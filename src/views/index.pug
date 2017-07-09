@@ -1,0 +1,74 @@
+extends layout
+
+block content
+  .page
+    header.header
+      .container
+        .headline
+          a(href='#').logo
+          nav.head-nav
+            each item in ['search', 'map', 'eye', 'print']
+              a.head-nav__link(href='#', class='head-nav__link_' + item)
+          .head-info
+            .head-info__item
+              | e-mail:
+              =' '
+              a.head-info__link(href='mailto:office@fondugra.ru')
+                b office@fondugra.ru
+              br
+              a.head-info__link(href='#')
+                b Задать вопрос
+            .head-info__item
+              | тел.:
+              =' '
+              a.head-info__link(href='tel:+73467301445') +7 3467
+                =' '
+                b 301-445
+              br
+              | факс:
+              =' '
+              a.head-info__link(href='tel:+73467301445') +7 3467
+                =' '
+                b 301-445
+    .navigation
+      .container
+        nav.nav
+          each item in ['О регионе', 'О фонде', 'Новости и мероприятия', 'Одно окно', 'Инвестиционные проекты', 'Закупки', 'Документы', 'Контакты', 'Фонд промышленности']
+            a.nav__link(href='#')= item
+    .slider big black slider
+    .services three items here
+    .news
+      .container
+        h2.caption.caption_white Новости
+        .row.news-list
+          -
+            const news = [
+              {
+                image: 'upload/news1.png',
+                title: 'Фонд развития принимает участие в «Российской неделе ГЧП»',
+                date: '30 марта 2017'
+              },
+              {
+                image: 'upload/news2.png',
+                title: 'Фонд развития Югры представил общественникам проект комплексного...',
+                date: '15 марта 2017'
+              },
+              {
+                image: 'upload/news3.png',
+                title: 'Вопросы развития промышленности обсуждаются в Сургуте',
+                date: '10 марта 2017'
+              },
+              {
+                image: 'upload/news4.png',
+                title: 'При участии Фонда в Сургутском районе создается индустриальный парк',
+                date: '3 марта 2017'
+              }
+            ]
+          each item in news
+            .col-4
+              a.news__item(href='#')
+                .news__image
+                  img(src=item.image, alt=item.title).image
+                .news-text
+                  .news-text__title= item.title
+                  .news-text__date= item.date
