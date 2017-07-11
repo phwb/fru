@@ -30,47 +30,185 @@ block content
               a.head-info__link(href='tel:+73467301445') +7 3467
                 =' '
                 b 301-445
-    .navigation
+    section.navigation
       .container
         nav.nav
           each item in ['О регионе', 'О фонде', 'Новости и мероприятия', 'Одно окно', 'Инвестиционные проекты', 'Закупки', 'Документы', 'Контакты', 'Фонд промышленности']
             a.nav__link(href='#')= item
-    .slider big black slider
-    .services three items here
-    .news
+    section.slider big black slider
+    section.services
+      .container
+        .row.service-list
+          -
+            const services = [
+              {
+                text: 'карта инвестиционных проектов',
+                icon: 'map'
+              },
+              {
+                text: 'одно окно',
+                icon: 'window'
+              },
+              {
+                text: 'навигатор мер господдержки',
+                icon: 'compass'
+              }
+            ];
+          each item in services
+            .col.service__col
+              a.service__link(href='#', class='service__link_' + item.icon)= item.text
+    section.section.news
       .container
         h2.caption.caption_white Новости
-        .row.news-list
+        .news-list
+          .row
+            -
+              const news = [
+                {
+                  image: 'upload/news1.png',
+                  title: 'Фонд развития принимает участие в «Российской неделе ГЧП»',
+                  date: '30 марта 2017'
+                },
+                {
+                  image: 'upload/news2.png',
+                  title: 'Фонд развития Югры представил общественникам проект комплексного...',
+                  date: '15 марта 2017'
+                },
+                {
+                  image: 'upload/news3.png',
+                  title: 'Вопросы развития промышленности обсуждаются в Сургуте',
+                  date: '10 марта 2017'
+                },
+                {
+                  image: 'upload/news4.png',
+                  title: 'При участии Фонда в Сургутском районе создается индустриальный парк',
+                  date: '3 марта 2017'
+                }
+              ]
+            each item in news
+              .col
+                a.news__item(href='#')
+                  .news__image
+                    img(src=item.image, alt=item.title).image
+                  .news-text
+                    .news-text__title= item.title
+                    .news-text__date= item.date
+          .news-more
+            button.button Все новости
+    section.section.events
+      .container
+        h2.caption Мероприятия
+        .event-list
+          .row
+            .col
+              a.event__item(href='#')
+                .event__title разработка организационно-управленческих механизмов
+                .event-date
+                  .event-date__date
+                    span.event-date__day 25
+                    =' '
+                    span.event-date__month апреля
+                  .event-date__delimiter
+                  .event-date__date
+                    span.event-date__day 13
+                    =' '
+                    span.event-date__month мая
+            .col
+              a.event__item(href='#')
+                .event__title проведение маркетинговых исследований создания проектов
+                .event-date
+                  .event-date__date
+                    span.event-date__day 28
+                    =' '
+                    span.event-date__month апреля
+                  .event-date__delimiter
+                  .event-date__date
+                    span.event-date__day 01
+                    =' '
+                    span.event-date__month мая
+          .row
+            .col
+              a.event__item(href='#')
+                .event__title Исследования в области образовательной и инновационной части проектов
+                .event-date
+                  .event-date__date
+                    span.event-date__day 01
+                    =' '
+                    span.event-date__month мая
+                  .event-date__delimiter
+                  .event-date__date
+                    span.event-date__day 03
+                    =' '
+                    span.event-date__month мая
+            .col
+              a.event__item(href='#')
+                .event__title проведение маркетинговых исследований создания проектов
+                .event-date
+                  .event-date__date
+                    span.event-date__day 28
+                    =' '
+                    span.event-date__month апреля
+                  .event-date__delimiter
+                  .event-date__date
+                    span.event-date__day 01
+                    =' '
+                    span.event-date__month мая
+          .news-more
+            button.button Все новости
+    section.banners
+      .container
+        .row.banner-list
           -
-            const news = [
+            const banners = [
               {
-                image: 'upload/news1.png',
-                title: 'Фонд развития принимает участие в «Российской неделе ГЧП»',
-                date: '30 марта 2017'
+                textBold: 'Единый сайт исполнительных органов государственной власти',
+                text: 'Ханты-Мансийского автономного округа – Югры'
               },
               {
-                image: 'upload/news2.png',
-                title: 'Фонд развития Югры представил общественникам проект комплексного...',
-                date: '15 марта 2017'
+                textBold: 'Инвестиционный портал ',
+                text: 'Ханты-Мансийского автономного округа – Югры'
               },
               {
-                image: 'upload/news3.png',
-                title: 'Вопросы развития промышленности обсуждаются в Сургуте',
-                date: '10 марта 2017'
-              },
-              {
-                image: 'upload/news4.png',
-                title: 'При участии Фонда в Сургутском районе создается индустриальный парк',
-                date: '3 марта 2017'
+                textBold: 'Инвестиционная карта',
+                text: 'Ханты-Мансийского автономного округа – Югры'
               }
-            ]
-          each item in news
-            .col-4
-              a.news__item(href='#')
-                .news__image
-                  img(src=item.image, alt=item.title).image
-                .news-text
-                  .news-text__title= item.title
-                  .news-text__date= item.date
-        .news-more
-          button.button Все новости
+            ];
+          each item in banners
+            .col
+              a.banner__item(href='#')
+                .banner__image
+                  img(src='upload/banner1.png')
+                .banner__text
+                  b= item.textBold
+                  =' ' + item.text
+
+    footer.footer
+      .container
+        .headline.headline_footer
+          .copyright Фонд развития Югры © 2017
+          nav.head-nav
+            each item in ['search', 'map', 'eye', 'print']
+              a.head-nav__link(href='#', class='head-nav__link_' + item)
+          .head-info
+            .head-info__item
+              | e-mail:
+              =' '
+              a.head-info__link(href='mailto:office@fondugra.ru')
+                b office@fondugra.ru
+              br
+              a.head-info__link(href='#')
+                b Задать вопрос
+            .head-info__item
+              | тел.:
+              =' '
+              a.head-info__link(href='tel:+73467301445') +7 3467
+                =' '
+                b 301-445
+              br
+              | факс:
+              =' '
+              a.head-info__link(href='tel:+73467301445') +7 3467
+                =' '
+                b 301-445
+        .to-top
+          a.to-top__link(href='#') наверх

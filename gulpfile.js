@@ -9,12 +9,22 @@ const cssnext = require('postcss-cssnext')
 const imagemin = require('gulp-imagemin')
 const addsrc = require('gulp-add-src')
 const concat = require('gulp-concat')
+const cssnano = require('gulp-cssnano')
+const gulpif = require('gulp-if')
 
 const plumberOptions = {
   errorHandler: notify.onError()
 }
 
-const clean = () => del('./build')
+const env = process.env.NODE_ENV === 'production'
+  ? 'production'
+  : 'development'
+
+const folder = env === 'production'
+  ? 'dist'
+  : 'build'
+
+const clean = () => del(`./${folder}`)
 
 const images = () => gulp.src('./src/images/**/*')
   .pipe(imagemin({
@@ -22,7 +32,7 @@ const images = () => gulp.src('./src/images/**/*')
       convertPathData: false
     }]
   }))
-  .pipe(gulp.dest('./build/images'))
+  .pipe(gulp.dest(`./${folder}/images`))
 
 const views = () => gulp.src([
   './src/views/*.pug',
@@ -33,25 +43,23 @@ const views = () => gulp.src([
     pretty: true,
     data: {}
   }))
-  .pipe(gulp.dest('./build'))
+  .pipe(gulp.dest(`./${folder}`))
 
-const styles = () => gulp.src([
-  './node_modules/normalize.css/normalize.css',
-  './src/styles/*.css'
-])
+const styles = () => gulp.src('./src/styles/*.css')
   .pipe(plumber(plumberOptions))
   .pipe(postcss([
     cssnext()
   ]))
   .pipe(addsrc.prepend('./node_modules/normalize.css/normalize.css'))
   .pipe(concat('main.css'))
-  .pipe(gulp.dest('./build/css'))
+  .pipe(gulpif(env === 'production', cssnano()))
+  .pipe(gulp.dest(`./${folder}/css`))
 
 const fonts = () => gulp.src('./src/fonts/**/*')
-  .pipe(gulp.dest('./build/fonts'))
+  .pipe(gulp.dest(`./${folder}/fonts`))
 
 const upload = () => gulp.src('./src/upload/**/*')
-  .pipe(gulp.dest('./build/upload'))
+  .pipe(gulp.dest(`./${folder}/upload`))
 
 const watch = () => {
   gulp.watch('./src/views/*.pug', views)
@@ -71,5 +79,5 @@ const serve = () => {
 gulp.task('default', gulp.series(
   clean,
   gulp.parallel(views, styles, fonts, images, upload),
-  gulp.parallel(serve, watch)
+  gulpif(env === 'development', gulp.parallel(serve, watch), (cb) => cb())
 ))
