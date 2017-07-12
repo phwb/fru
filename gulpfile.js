@@ -26,7 +26,7 @@ const folder = env === 'production'
 
 const clean = () => del(`./${folder}`)
 
-const images = () => gulp.src('./src/images/**/*')
+const images = () => gulp.src('./src/images/**/*.{jpg,jpeg,png,svg}')
   .pipe(imagemin({
     svgoPlugins: [{
       convertPathData: false

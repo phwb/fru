@@ -1,0 +1,101 @@
+extends layout
+
+block content
+  -
+    var services = [
+      {
+        text: 'карта инвестиционных проектов',
+        icon: 'map'
+      },
+      {
+        text: 'одно окно',
+        icon: 'window'
+      },
+      {
+        text: 'навигатор мер господдержки',
+        icon: 'compass'
+      }
+    ];
+    var news = [
+      {
+        image: 'upload/news1.png',
+        title: 'Фонд развития принимает участие в «Российской неделе ГЧП»',
+        date: '30 марта 2017'
+      },
+      {
+        image: 'upload/news2.png',
+        title: 'Фонд развития Югры представил общественникам проект комплексного...',
+        date: '15 марта 2017'
+      },
+      {
+        image: 'upload/news3.png',
+        title: 'Вопросы развития промышленности обсуждаются в Сургуте',
+        date: '10 марта 2017'
+      },
+      {
+        image: 'upload/news4.png',
+        title: 'При участии Фонда в Сургутском районе создается индустриальный парк',
+        date: '3 марта 2017'
+      }
+    ];
+    var events = [
+      {
+        title: 'разработка организационно-управленческих механизмов',
+        fromDay: '25',
+        fromMonth: 'апреля',
+        toDay: '13',
+        toMonth: 'мая'
+      },
+      {
+        title: 'проведение маркетинговых исследований создания проектов',
+        fromDay: '28',
+        fromMonth: 'апреля',
+        toDay: '01',
+        toMonth: 'мая'
+      }
+    ];
+
+  section.slider big black slider
+  section.services
+    .container
+      .row.service-list
+        each item in services
+          .col.service__col
+            a.service__link(href='#', class='service__link_' + item.icon)= item.text
+  section.section.news
+    .container
+      h2.caption.caption_white Новости
+      .news-list
+        .row
+          each item in news
+            .col
+              a.news__item(href='#')
+                .news__image
+                  img(src=item.image, alt=item.title).image
+                .news-text
+                  .news-text__title= item.title
+                  .news-text__date= item.date
+        .news-more
+          button.button Все новости
+  section.section.events
+    .container
+      h2.caption Мероприятия
+      .event-list
+        each i in [1, 2]
+          .row
+            each event in events
+              .col
+                a.event__item(href='#')
+                  .event__title= event.title
+                  .event-date
+                    .event-date__date
+                      span.event-date__day= event.fromDay
+                      =' '
+                      span.event-date__month= event.fromMonth
+                    .event-date__delimiter
+                    .event-date__date
+                      span.event-date__day= event.toDay
+                      =' '
+                      span.event-date__month= event.toMonth
+        .news-more
+          button.button Все мероприятия

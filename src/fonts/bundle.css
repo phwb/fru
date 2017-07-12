@@ -27,22 +27,22 @@
 }
 
 @font-face {
-  font-family: 'Intro Caps';
+  font-family: 'Intro Bold Caps';
   src: url('intro/intro-bold-caps-webfont.woff2') format('woff2'), url('intro/intro-bold-caps-webfont.woff') format('woff');
-  font-weight: 700;
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Intro Caps';
+  font-family: 'Intro Black Caps';
   src: url('intro/intro-black-caps-webfont.woff2') format('woff2'), url('intro/intro-black-caps-webfont.woff') format('woff');
-  font-weight: 900;
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Intro Cond';
   src: url('intro/intro_cond_black_free-webfont.woff2') format('woff2'), url('intro/intro_cond_black_free-webfont.woff') format('woff');
-  font-weight: 900;
+  font-weight: 400;
   font-style: normal;
 }

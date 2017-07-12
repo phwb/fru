@@ -1,0 +1,185 @@
+extends layout
+
+block content
+  -
+    var news = [
+    {
+    image: 'upload/news1.png',
+    title: 'Фонд развития принимает участие в «Российской неделе ГЧП»',
+    date: '30 марта 2017'
+    },
+    {
+    image: 'upload/news2.png',
+    title: 'Фонд развития Югры представил общественникам проект комплексного...',
+    date: '15 марта 2017'
+    },
+    {
+    image: 'upload/news3.png',
+    title: 'Вопросы развития промышленности обсуждаются в Сургуте',
+    date: '10 марта 2017'
+    },
+    {
+    image: 'upload/news4.png',
+    title: 'При участии Фонда в Сургутском районе создается индустриальный парк',
+    date: '3 марта 2017'
+    }
+    ];
+    var events = [
+      {
+        title: 'разработка организационно-управленческих механизмов',
+        fromDay: '25',
+        fromMonth: 'апреля',
+        toDay: '13',
+        toMonth: 'мая'
+      },
+      {
+        title: 'проведение маркетинговых исследований создания проектов',
+        fromDay: '28',
+        fromMonth: 'апреля',
+        toDay: '01',
+        toMonth: 'мая'
+      }
+    ];
+
+  section.intro
+    .container.container_slim
+      .intro-inner
+        h1.intro__title
+          | государственный фонд
+          br
+          | развития промышленности
+        .intro-text
+          .intro-text__left
+            h3.text-bold Содействует в 
+              span.text-orange формировании  государственной политики 
+              | и 
+              span.text-orange разработке ключевых <br>нормативно-правовых документов 
+              | в сфере промышленности.
+            br
+            | Участвует в реализации окружной программы развития промышленности
+            br
+            | 2018-2025 гг.
+          .intro-text__right
+            .intro-text__top внедрил
+            .orange__number 
+              span.number.number_22
+            .intro-text__bottom предложения
+  section.stat
+    .container.container_slim
+      .stat-inner
+        h3.text-bold.text-white Оказывает 
+          span.text-orange поддержку субъектам деятельности 
+          | в сфере промышленности  по приоритетным направлениям развития.
+          br
+          br
+          | Предоставляет льготные займы по проектам
+        .stat-numbers
+          div
+            .text-bold.text-white емкостью 
+              span.text-bold__small от
+            .orange__number
+              span.number.number_40
+            .text-bold.text-white.text-right млн руб
+          .stat-line
+          div
+            .text-bold.text-white(style={'margin-right': '-25px'}) на срок  
+              span.text-bold__small до
+            .orange__number
+              span.number.number_5
+            .text-bold.text-white.text-right лет
+          .stat-line
+          div
+            .text-bold.text-white под
+            .orange__number
+              span.number.number_5
+              span.stat-numbers__percent %
+            .text-bold.text-white.text-right годовых
+  section.stat-white
+    .container.container_slim
+      .stat-white-inner
+        h3.text-bold Создает 
+          span.text-orange объекты Промышленной инфраструктуры.
+        .stat-numbers.stat-numbers_white
+          div
+            .text-bold Структурированы
+              br
+              | проекты создания
+            .orange__number
+              span.number.number_4
+              span.stat-numbers__percent -x
+            .text-bold.text-right индустриальных
+              br
+              | парков
+          .stat-line.stat-line_light
+          div
+            .text-bold определены
+            .orange__number
+              span.number.number_53
+              span(style={display: 'inline-block', 'vertical-align': 'top', 'margin-left': '13px'})
+                .text-bold(style={'line-height': '16px', 'margin-bottom': '5px'}) площадки
+                div в муниципальных 
+                  br 
+                  | образованиях Югры
+                  br 
+                  | для размещения 
+                  br 
+                  | промышленных объектов
+  section.stat-window
+    .container
+      .one-window
+        .one-window__item
+          .big-15
+          div
+            .one-window__title проектов в рамках
+              br
+              | «Одного окна»
+            div
+              a.link.text-orange(href='#')
+                b Смотреть информационно-консультационные
+                  br
+                  | меры поддрежки
+  section.supports
+    .container
+      h2.supports__title Подберите меру поддержки, которая подойдет именно Вам
+        br
+        | воспользовавшись 
+        span.text-orange НАВИГАТОРОМ мер поддержи
+      .news-more
+        button.button.button_yellow подобрать меру поддержки
+  section.section.events
+    .container
+      h2.caption Мероприятия
+      .event-list
+        each i in [1, 2]
+          .row
+            each event in events
+              .col
+                a.event__item(href='#')
+                  .event__title= event.title
+                  .event-date
+                    .event-date__date
+                      span.event-date__day= event.fromDay
+                      =' '
+                      span.event-date__month= event.fromMonth
+                    .event-date__delimiter
+                    .event-date__date
+                      span.event-date__day= event.toDay
+                      =' '
+                      span.event-date__month= event.toMonth
+        .news-more
+          button.button Все мероприятия
+  section.section.news
+    .container
+      h2.caption.caption_white Новости
+      .news-list
+        .row
+          each item in news
+            .col
+              a.news__item(href='#')
+                .news__image
+                  img(src=item.image, alt=item.title).image
+                .news-text
+                  .news-text__title= item.title
+                  .news-text__date= item.date
+        .news-more
+          button.button Все новости

@@ -6,4 +6,92 @@ html(lang="ru")
     link(rel='stylesheet', href='./fonts/bundle.css')
     link(rel='stylesheet', href='./css/main.css')
   body
-    block content
+    -
+      var headNav = ['search', 'map', 'eye', 'print'];
+      var navigations = ['О регионе', 'О фонде', 'Новости и мероприятия', 'Одно окно', 'Инвестиционные проекты', 'Закупки', 'Документы', 'Контакты', 'Фонд промышленности'];
+      var banners = [
+      {
+      textBold: 'Единый сайт исполнительных органов государственной власти',
+      text: 'Ханты-Мансийского автономного округа – Югры'
+      },
+      {
+      textBold: 'Инвестиционный портал ',
+      text: 'Ханты-Мансийского автономного округа – Югры'
+      },
+      {
+      textBold: 'Инвестиционная карта',
+      text: 'Ханты-Мансийского автономного округа – Югры'
+      }
+      ];
+
+    .page
+      header.header
+        .container
+          .headline
+            a(href='#').logo
+            nav.head-nav
+              each item in headNav
+                a.head-nav__link(href='#', class='head-nav__link_' + item)
+            .head-info
+              .head-info__item
+                | e-mail: 
+                a.link(href='mailto:office@fondugra.ru')
+                  b office@fondugra.ru
+                br
+                a.link(href='#')
+                  b Задать вопрос
+              .head-info__item
+                | тел.: 
+                a.link(href='tel:+73467301445') +7 3467 
+                  b 301-445
+                br
+                | факс: 
+                a.link(href='tel:+73467301445') +7 3467 
+                  b 301-445
+      // класс .navigation_fpu это состояние для ФПЮ, на других страницах он не нужен
+      section.navigation.navigation_fpu
+        .container
+          nav.nav
+            each item in navigations
+              a.link.nav__link(href='#')= item
+      block content
+      // класс .banners_invert можно убрать, блок с баннерами станет серым
+      section.banners.banners_invert
+        .container
+          .row.banner-list
+            each item in banners
+              .col
+                a.banner__item(href='#')
+                  .banner-image
+                    img.banner__image(src='upload/banner2.png')
+                  .banner-text
+                    span.banner-text__bold= item.textBold
+                    =' ' + item.text
+      footer.footer
+        .container
+          .headline.headline_footer
+            // можно воткнуть копирайт: <div class="copyright">Фонд развития Югры © 2017</div>
+            a(href='#').logo
+            a(href='#').logo.logo_fpu
+            nav.head-nav
+              each item in headNav
+                a.head-nav__link(href='#', class='head-nav__link_' + item)
+            .head-info
+              .head-info__item
+                | e-mail: 
+                a.link(href='mailto:office@fondugra.ru')
+                  b office@fondugra.ru
+                br
+                a.link(href='#')
+                  b Задать вопрос
+              .head-info__item
+                | тел.: 
+                a.link(href='tel:+73467301445') +7 3467
+                  =' '
+                  b 301-445
+                br
+                | факс: 
+                a.link(href='tel:+73467301445') +7 3467 
+                  b 301-445
+          .to-top
+            a.to-top__link(href='#') наверх
